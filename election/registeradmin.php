@@ -2,8 +2,8 @@
  session_start();
 
 
- if(isset($_SESSION['errorm'])){
-  $error = $_SESSION['errorm'];
+ if(isset($_SESSION['erroradm'])){
+  $error = $_SESSION['erroradm'];
  }else{
  $error = '';}
 
@@ -28,9 +28,9 @@ $cpass = $_POST['cpassadm'];
 $name = $_POST['nameadm'];
 $email = $_POST['emailadm'];
 if($pass != $cpass){
-  $_SESSION['errorm'] = 'Wrong password confirmation';
+  $_SESSION['erroradm'] = 'Wrong password confirmation';
   header("Location: registeradmin.php");
-}
+}else{
 require_once 'googleLib/GoogleAuthenticator.php';
 $ga = new GoogleAuthenticator();
 $secret = $ga->createSecret();
@@ -41,7 +41,7 @@ $secret = $ga->createSecret();
 $query = "INSERT INTO admins (name, email, password, google_auth) VALUES ('$name', '$email', '$password', '$secret')";
 $res = mysqli_query($conn, $query);
 if($res){
-  $_SESSION['errorm'] = 'Done';
+  unset($_SESSION['erroradm']);
    header("Location: registeradmin.php");
 }
 else{
@@ -49,6 +49,7 @@ else{
   echo $name;
   echo $email;
   echo $password;
+}
 }
 }
 ?>

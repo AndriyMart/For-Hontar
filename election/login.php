@@ -19,7 +19,14 @@ if ( !$conn ) {
 
 $email = $_POST['email'];
 $password = $_POST['studentid'];
+echo $email;
 
+if($email == null){
+
+$_SESSION['errorel'] = "Incorrect Credentials, Try again...";
+header("Location:index.php");
+
+}else{
 //$password = hash('sha256', $pass); 
 // password hashing using SHA256 
 //safety first)
@@ -36,7 +43,6 @@ if($row['student_id']==$password ) {
    	header("Location:index.php");
     $_SESSION['errorel'] = "Incorrect Credentials, Try again...";
    }
- }else {
- 	header("Location:index.php");
  }
+}
 ?>

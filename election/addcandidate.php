@@ -2,6 +2,7 @@
 
 session_start();
 
+
 define('DBHOST', 'localhost');
 define('DBUSER', 'root');
 define('DBPASS', '');
@@ -9,102 +10,18 @@ define('DBNAME', 'election');
  //bd connection
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 mysqli_set_charset($conn,"utf8_unicode_ci");
-$error= "";
 
-if (isset($_POST['descand'])) {
-
-$_SESSION['namecand'] = $_POST['namecand'];
-
-$_SESSION['id_el'] = $_POST['id_el'];
-
-$_SESSION['descand'] = $_POST['descand'];
-
-$_SESSION['pic'] = $_FILES["fileToUpload"];
-
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
-$_SESSION['target_file'] = $target_file;//for posting directory of file to db
-
-$uploadOk = 1;
-
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        $uploadOk = 1;
-    } else {
-        $error = "File is not an image.";
-        $_SESSION['error'] = $error;
-        header("Location:addcandidate.php");
-        $uploadOk = 0;
-    }
-
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    $error = "Sorry, your file is too large.";
-    $_SESSION['error'] = $error;
-    header("Location:addcandidate.php");
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    $error = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $_SESSION['error'] = $error;
-    header("Location:addcandidate.php");
-    $uploadOk = 0;
-}
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-
-// if everything is ok, try to upload file
-
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    $error = '1';
-    }else{
-    $error = "Sorry, there was an error uploading your file.";
-    $_SESSION['error'] = $error;
-    header("Location:addcandidate.php");
-        }
-    }  
-if ( !$conn ) {//db connection checking
-  die("Connection failed : " . mysqli_error());
-}
-//query
-$namecand = $_SESSION['namecand'];
-$id_el = $_SESSION['id_el'];
-$descand = $_SESSION['descand'];
-$tf = $_SESSION['target_file'];
-$query = "INSERT INTO cands (name, id_el, description, pic_url) VALUES ('$namecand', '$id_el', '$descand', '$tf')";
-$res = mysqli_query($conn, $query);
-
-if ($res) {
-    unset($_SESSION['namecand']);
-    unset($_SESSION['id_el']);
-    unset($_SESSION['descand']);
-    unset($_SESSION['target_file']);
-    header("Location:addpersons.php");
-}else{
-    $error = "Sorry, there was an error uploading your file.";
-    $_SESSION['error'] = $error;
-    header("Location:addcandidate.php");
- }      
-}
-$name = $_SESSION['name'];
+if(isset($_SESSION['errorcand'])){
+  $error= $_SESSION['errorcand'];}else{
+    $error = '';
+  }
+  
+  $name = $_SESSION['name'];
 $query1 = "SELECT id_elect FROM els WHERE name = '$name'";
 $res1 = mysqli_query($conn, $query1);
+$row=mysqli_fetch_array($res1);
 
-$ids = array();
-    while($rows = mysqli_fetch_array($res1)) {
 
-       // Записать значение столбца FirstName (который является теперь массивом $row)
-      
-        array_push($ids, $rows);
-
-      }
 
 ?>
 <html>
@@ -154,7 +71,7 @@ $ids = array();
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <a href="logout.php" class="btn btn-secondary my-2 my-sm-0" role="button" >Logout</a>
+      <a href="test.php" class="btn btn-secondary my-2 my-sm-0" role="button" >Logout</a>
     </form>
   </div>
   <?php }elseif (isset($_SESSION['isvoter'])) {
@@ -175,12 +92,11 @@ $ids = array();
   </div>
   <?php }else{header('Location:index.php');} ?>
 </nav>
-<?php foreach ($ids as $one){ ?>
 <div class="task col-lg-6 offset-lg-3 " style = "margin-top:-10px;">
-<form action="addcandidate.php" method="post" enctype="multipart/form-data" >
+<form action="test.php" method="post" enctype="multipart/form-data" >
   <div class="form-group" style="visibility:hidden">
     <label for="id_el">ID els</label>
-    <input type="name" class="form-control" name = "id_el" id="id_el" value = "<?=$one['id_elect']?>">
+    <input type="name" class="form-control" name = "id_el" id="id_el" value = "<?=$row['id_elect']?>">
   </div>
   <div class="form-group">
     <label for="namecand">Name</label>
@@ -196,8 +112,7 @@ $ids = array();
     <small id="fileHelp" class="form-text text-muted">The selected picture must be a JPG / GIF / PNG format.</small>
   </div>
   <button type="submit" name = "submit" class="btn btn-primary" style="background-color:#e6eeff; color:black; border-color:#80aaff;">Submit</button>
-  <p class = "errormas text-center" style = "color:#ff9999;"><br><br><?php echo $error?></p>
-  <?php }?>
+  <p class = "errormas text-center" style = "color:#ff9999"><br><br><?php echo $error; ?></p>
 </form>
 </div>
 </body>

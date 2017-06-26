@@ -1,4 +1,5 @@
 <?php
+ 
 
 session_start();
 
@@ -9,8 +10,8 @@ define('DBNAME', 'election');
  //bd connection
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 mysqli_set_charset($conn,"utf8_unicode_ci");
-if(isset($_SESSION['error'])){
-  $error = $_SESSION['error'];
+if(isset($_SESSION['errorvoter'])){
+  $error = $_SESSION['errorvoter'];
 }else{
 $error= "";
 }
@@ -40,14 +41,14 @@ if ($res) {
     unset($_SESSION['id_el']);
     unset($_SESSION['studentid']);
     unset($_SESSION['email']);
+    unset($_SESSION['errorvoter']);
     header("Location:addpersons.php");
 }else{
     $error = "Sorry, there was an error.";
-    $_SESSION['error'] = $error;
+    $_SESSION['errorvoter'] = $error;
     header("Location:addvoter.php");
  }      
 }
-
 $name = $_SESSION['name'];
 $query1 = "SELECT id_elect FROM els WHERE name = '$name'";
 $res1 = mysqli_query($conn, $query1);
@@ -59,8 +60,8 @@ $ids = array();
       
         array_push($ids, $rows);
 
-      }
-
+      
+}
 ?>
 <html>
 <head>

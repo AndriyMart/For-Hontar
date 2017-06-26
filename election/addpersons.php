@@ -114,6 +114,10 @@ if ($res) {
  }      
 }
 if(isset($_GET['edit'])){
+  $id_elect = $_GET['edit'];
+  $res=mysqli_query($conn,"SELECT name FROM els WHERE id_elect='$id_elect'");
+  $row=mysqli_fetch_array($res);
+  $_SESSION['name'] = $row['name'];
   $query = "SELECT pic_url, name, description, id_cand, id_el  FROM cands WHERE id_el = '".$_GET['edit']."'";
   $res = mysqli_query($conn, $query);
 }else{

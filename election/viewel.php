@@ -64,19 +64,22 @@ $voters = array();
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Elections<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="adminpanel.php">Elections<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">New Election</a>
+        <a class="nav-link" href="newelection.php">New Election</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Administrator
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Manage Administrators</a>
-          <a class="dropdown-item" href="#">New Administrator</a>
+          <a class="dropdown-item" href="adminsview.php">Manage Administrators</a>
+          <a class="dropdown-item" href="registeradmin.php">New Administrator</a>
         </div>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="archive.php">Archive</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -85,14 +88,13 @@ $voters = array();
   </div>
   <?php }elseif (isset($_SESSION['isvoter'])) {?>
     <a class="navbar-brand" href="#">Vote KMA</a>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Elections<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="main.php">Elections<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Archive</a>
+        <a class="nav-link" href="archive.php">Archive</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -131,6 +133,10 @@ $voters = array();
     <?php }?>
   </tbody>
 </table>
+<?php if(isset($_GET['more'])){?>
+<a href="archive.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Finish</a>
+<?php }else{ ?>
 <a href="index.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Finish</a>
+<?php } ?>
 </body>
 </html>
