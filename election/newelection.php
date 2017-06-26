@@ -11,6 +11,7 @@ if(isset($_SESSION['errorel'])){
     <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <title>NaUKMA Eelection</title>
@@ -26,7 +27,8 @@ if(isset($_SESSION['errorel'])){
 </head>
 <body>
 <?php include("navbar.php");?>
-<div class="task col-lg-6 offset-lg-3 " style = "margin-top:50px;">
+
+<div class="col-lg-6 col-lg-offset-3" style = "margin-top:50px;">
 <form action="addpersons.php" method="post" enctype="multipart/form-data" >
   <div class="form-group">
     <label for="name">Title</label>
@@ -52,6 +54,7 @@ if(isset($_SESSION['errorel'])){
   <button type="submit" name = "submit" class="btn btn-primary" style="background-color:#e6eeff; color:black; border-color:#80aaff;">Submit</button>
   <p class = "errormas text-center" style = "color:#ff9999;"><br><br><?php echo $error?></p>
 </form>
-</div>
+</div>       
+            
 </body>
 </html>

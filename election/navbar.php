@@ -45,25 +45,8 @@
         </script>
         </div>
       </form>
-      <?php }elseif (isset($_SESSION['isvoter'])) { 
-        header('Location:index.php');?>
-        <a class="navbar-brand" href="#">Vote KMA</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="main.php">Elections<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="archive.php">Archive</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <a href="logout.php" class="btn btn-secondary my-2 my-sm-0" role="button" >Logout</a>
-          </form>
-        </div>
-        <?php }else{header('Location:index.php');} ?>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-        <?php }else{header('Location:index.php');} ?>
-    </nav>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  <?php }else{header('Location:index.php');} ?>
+</nav>
