@@ -9,6 +9,7 @@ $error = $_SESSION['errorel'] ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Basic Page Needs
     ================================================== -->
@@ -22,6 +23,7 @@ $error = $_SESSION['errorel'] ;
     <link rel="stylesheet" type="text/css"  href="css/bootstrap.css">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css"  href="css/index.css">
+    
 </head>
 <body>
 	<div class = "head1">
