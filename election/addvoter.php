@@ -3,10 +3,7 @@
 
 session_start();
 
-define('DBHOST', 'localhost');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'election');
+include("database.php");
  //bd connection
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 mysqli_set_charset($conn,"utf8_unicode_ci");

@@ -6,10 +6,7 @@ if(isset($_POST["code"])){//works only after submiting form
 $code=$_POST['code'];
 $idadmin = $_SESSION['islog'];
 
- define('DBHOST', 'localhost');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'election');
+include("database.php");
  //bd connection
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 

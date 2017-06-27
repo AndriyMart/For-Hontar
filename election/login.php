@@ -6,10 +6,7 @@ session_start();
 
 if(isset($_POST["submit"])){//works only after submiting form
 
- define('DBHOST', 'localhost');
- define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'election');
+include("database.php");
  //bd connection
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 

@@ -7,10 +7,7 @@
  }else{
  $error = '';}
 
- define('DBHOST', 'localhost');
- define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'election');
+include("database.php");
  
 $conn = new mysqli(DBHOST,DBUSER,DBPASS,DBNAME);
 
