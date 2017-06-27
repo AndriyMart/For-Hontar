@@ -16,7 +16,7 @@ if ( !$conn ) {
 
 $email = $_POST['email'];
 $password = $_POST['studentid'];
-echo $email;
+
 
 if($email == null){
 
