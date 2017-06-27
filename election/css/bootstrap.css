@@ -672,6 +672,9 @@ mark,
   height: auto;
 }
 
+.thumbnail {
+display: inline-block !important;
+}
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;

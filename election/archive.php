@@ -51,23 +51,26 @@ $els = array();
 <body>
 <?php include("navbar.php");?>
 
-<div class="col-sm-6 col-md-4">
-  <?php foreach ($els as $one){ ?>
-  <div class="thumbnail">
-    <img src="<?=$one['pic_url']?>" alt="Card image cap" style = "width:300px; height:260px;">
-      <div class="caption center-block">
-        <h3><?=$one['name']?></h3>
-        <p>Organisation:<?=$one['organisation']?></p>
-        <p>Description:<?=$one['description']?></p>
-        <p>End date:<?=$one['finishdate']?></p>
-        <?php if(isset($_SESSION['isadmin'])){ ?>
-        <p><a href="archive.php?delete=<?=$one['id_elect']?>" class="btn btn-primary" role="button">Delete</a> <a href="viewel.php?more=<?=$one['id_elect']?>" class="btn btn-default" role="button">More</a></p>
+<div class="container">
+  <div class="row">
+    <?php foreach ($els as $one){ ?>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="<?=$one['pic_url']?>" alt="Card image cap" style = "width:260px; height:260px;">
+            <div class="caption center-block">
+              <h3><?=$one['name']?></h3>
+              <p>Organisation:<?=$one['organisation']?></p>
+              <p>Description:<?=$one['description']?></p>
+              <p>End date:<?=$one['finishdate']?></p>
+              <?php if(isset($_SESSION['isadmin'])){ ?>
+                <p><a href="archive.php?delete=<?=$one['id_elect']?>" class="btn btn-primary" role="button">Delete</a> <a href="viewel.php?more=<?=$one['id_elect']?>" class="btn btn-default" role="button">More</a></p>
+              <?php } ?>
+            </div>
+        </div>
       </div>
-      <?php } ?>
-    </div>
     <?php }?>
   </div>
-
+</div>
 
 <!--<div class="card-group">
 <?php foreach ($els as $one){ ?>

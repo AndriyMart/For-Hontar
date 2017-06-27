@@ -50,21 +50,24 @@ $els = array();
 <body>
 <?php include("navbar.php");?>
 
-<div class="row">
-<?php foreach ($els as $one){ ?>
-<div class="col-sm-4 col-md-3">
-  <div class="thumbnail">
-    <img src="<?=$one['pic_url']?>" alt="Card image cap" style = "width:300px; height:260px;" class="img-responsive center-block">
-      <div class="caption center-block">
-        <h3><?=$one['name']?></h3>
-        <p>Organisation:<?=$one['organisation']?></p>
-        <p>Description:<?=$one['description']?></p>
-        <p>End date:<?=$one['finishdate']?></p>
-        <p><a href="adminpanel.php?delete=<?=$one['id_elect']?>" class="btn btn-primary" role="button">Delete</a> <a href="addpersons.php?edit=<?=$one['id_elect']?>" class="btn btn-default" role="button">Edit</a></p>
+<div class="container">
+  <div class="row">
+    <?php foreach ($els as $one){ ?>
+    <div class="col-sm-4 col-md-3">
+      <div class="thumbnail">
+        <img src="<?=$one['pic_url']?>" alt="Card image cap" style = "width:260px; height:260px;" class="img-responsive center-block">
+          <div class="caption center-block">
+            <h3><?=$one['name']?></h3>
+            <p>Organisation:<?=$one['organisation']?></p>
+            <p>Description:<?=$one['description']?></p>
+            <p>End date:<?=$one['finishdate']?></p>
+            <p><a href="adminpanel.php?delete=<?=$one['id_elect']?>" class="btn btn-primary" role="button">Delete</a> <a href="addpersons.php?edit=<?=$one['id_elect']?>" class="btn btn-default" role="button">Edit</a></p>
+          </div>
+        </div>
       </div>
-    </div>
+    <?php }?>
   </div>
-<?php }?>
 </div>
+
 </body>
 </html>

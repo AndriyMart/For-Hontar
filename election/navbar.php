@@ -17,9 +17,9 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminpanel.php">Elections<span class="sr-only">(current)</span></a></li>
+        <li><a href="adminpanel.php">Elections</a></li>
         <li><a href="newelection.php">New Election</a></li>
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrator <span class="caret"></span></a>
@@ -46,7 +46,33 @@
         </div>
       </form>
       </ul>
+      <?php }elseif (isset($_SESSION['isvoter'])) {?>
+        
+        <a class="navbar-brand" href="#">Vote KMA</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+           <li><a href="main.php">Elections</span></a></li>
+           <li><a href="archive.php">Archive</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <form class="navbar-form navbar-left">
+              <div class="form-group">
+                <input type="button" class="btn btn-default" value="Logout" onclick=" relocate_home()">
+
+                <script>
+                  function relocate_home()
+                  {
+                       location.href = "logout.php";
+                  } 
+                </script>
+              </div>
+              </form>
+        </ul>
+      </div>
+  <?php }else{header('Location:index.php');} ?>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-  <?php }else{header('Location:index.php');} ?>
+  
 </nav>
